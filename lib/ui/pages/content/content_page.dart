@@ -1,6 +1,8 @@
-import 'package:f_gps_tracker/domain/models/location.dart';
-import 'package:f_gps_tracker/ui/controllers/gps.dart';
-import 'package:f_gps_tracker/ui/controllers/location.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:gps_tracker/domain/models/location.dart';
+import 'package:gps_tracker/domain/use_cases/location_manager.dart';
+import 'package:gps_tracker/ui/controllers/gps.dart';
+import 'package:gps_tracker/ui/controllers/location.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,6 +29,9 @@ class ContentPage extends GetView<LocationController> {
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: ElevatedButton(
                       onPressed: () async {
+                        var _position = await GpsController.currentLocation;
+                        var _precision = await GpsController.locationAccuracy;
+                        var _location = new TrackedLocation(latitude: latitude, longitude: longitude, precision: precision, timestamp: timestamp)
                         // TODO: 1. Obten la ubicacion actual con gpsController.currentLocation
                         // TODO: 2. Obten la precision de la lectura con gpsController.locationAccuracy.
                         // TODO: 3. Crea un objeto [TrackedLocation] con fecha actual [DateTime.now] y la precisio como texto [accuracy.name]
@@ -74,6 +79,7 @@ class ContentPage extends GetView<LocationController> {
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: ElevatedButton(
                       onPressed: () async {
+                        var deleteAll = await LocationController.deleteAll();
                         // TODO: elimina todas las ubicaciones usando el controlador [deleteAll]
                       },
                       child: const Text("Eliminar Todos"),

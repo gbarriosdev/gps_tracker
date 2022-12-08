@@ -1,4 +1,4 @@
-import 'package:f_gps_tracker/device/gps.dart';
+import 'package:gps_tracker/device/gps.dart';
 import 'package:geolocator/geolocator.dart';
 
 abstract class GpsManager {

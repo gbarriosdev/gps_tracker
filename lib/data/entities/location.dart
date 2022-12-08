@@ -1,5 +1,5 @@
 // Es simplemente una manera de agregar funcionalidad a una clase existente.
-import 'package:f_gps_tracker/domain/models/location.dart';
+import 'package:gps_tracker/domain/models/location.dart';
 
 extension LocationEntity on TrackedLocation {
   static TrackedLocation fromRecord(Map<String, dynamic> record) {

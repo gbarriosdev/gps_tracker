@@ -1,4 +1,4 @@
-import 'package:f_gps_tracker/domain/use_cases/gps_manager.dart';
+import 'package:gps_tracker/domain/use_cases/gps_manager.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 

@@ -1,4 +1,4 @@
-import 'package:f_gps_tracker/domain/models/location.dart';
+import 'package:gps_tracker/domain/models/location.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 

@@ -1,6 +1,6 @@
-import 'package:f_gps_tracker/data/entities/location.dart';
-import 'package:f_gps_tracker/domain/models/location.dart';
-import 'package:f_gps_tracker/domain/repositories/hive_interface.dart';
+import 'package:gps_tracker/data/entities/location.dart';
+import 'package:gps_tracker/domain/models/location.dart';
+import 'package:gps_tracker/domain/repositories/hive_interface.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class LocationRepository extends DatabaseInterface {
