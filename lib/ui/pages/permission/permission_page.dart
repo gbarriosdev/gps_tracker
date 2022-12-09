@@ -51,7 +51,9 @@ class _LocationState extends State<PermissionPage> {
               return Center(
                 child: ElevatedButton(
                     onPressed: () {
-                      _permissionStatus = controller.requestPermission();
+                      setState(() {
+                        _permissionStatus = controller.requestPermission();
+                      });
                     },
                     child: const Text("Solicitar Permisos")),
               );

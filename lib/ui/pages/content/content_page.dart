@@ -1,6 +1,6 @@
-import 'package:geolocator/geolocator.dart';
+//import 'package:geolocator/geolocator.dart';
 import 'package:gps_tracker/domain/models/location.dart';
-import 'package:gps_tracker/domain/use_cases/location_manager.dart';
+//import 'package:gps_tracker/domain/use_cases/location_manager.dart';
 import 'package:gps_tracker/ui/controllers/gps.dart';
 import 'package:gps_tracker/ui/controllers/location.dart';
 import 'package:flutter/material.dart';
@@ -29,13 +29,14 @@ class ContentPage extends GetView<LocationController> {
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: ElevatedButton(
                       onPressed: () async {
-                        var _position = await GpsController.currentLocation;
-                        var _precision = await GpsController.locationAccuracy;
-                        var _location = new TrackedLocation(latitude: latitude, longitude: longitude, precision: precision, timestamp: timestamp)
-                        // TODO: 1. Obten la ubicacion actual con gpsController.currentLocation
-                        // TODO: 2. Obten la precision de la lectura con gpsController.locationAccuracy.
-                        // TODO: 3. Crea un objeto [TrackedLocation] con fecha actual [DateTime.now] y la precisio como texto [accuracy.name]
-                        // TODO: 4. con el [controller] guarda ese objeto [saveLocation]
+                        final location = await gpsController.currentLocation;
+                        final accuracy = await gpsController.locationAccuracy;
+                        controller.saveLocation(
+                            location: TrackedLocation(
+                                latitude: location.latitude,
+                                longitude: location.longitude,
+                                precision: accuracy.name,
+                                timestamp: DateTime.now()));
                       },
                       child: const Text("Registrar Ubicacion"),
                     ),
@@ -60,7 +61,7 @@ class ContentPage extends GetView<LocationController> {
                                   'Fecha: ${location.timestamp.toIso8601String()}\n${location.precision.toUpperCase()}'),
                               trailing: IconButton(
                                 onPressed: () {
-                                  // TODO: elimina la ubicacion [location] usando el controlador [deleteLocation]
+                                  controller.deleteLocation(location: location);
                                 },
                                 icon: const Icon(
                                   Icons.delete_forever_rounded,
@@ -79,8 +80,7 @@ class ContentPage extends GetView<LocationController> {
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: ElevatedButton(
                       onPressed: () async {
-                        var deleteAll = await LocationController.deleteAll();
-                        // TODO: elimina todas las ubicaciones usando el controlador [deleteAll]
+                        await controller.deleteAll();
                       },
                       child: const Text("Eliminar Todos"),
                     ),
